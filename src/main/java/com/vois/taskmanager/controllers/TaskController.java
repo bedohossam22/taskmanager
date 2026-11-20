@@ -48,6 +48,6 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public String deleteTask(@PathVariable Long id) {
         taskRepository.deleteById(id);
-        return "Task deleted successfully!";
+        return "Task deleted successfully! thanks";
     }
 }
