@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
 
 @Entity
 public class Task {
@@ -14,14 +15,17 @@ public class Task {
     private String title;
     private String description;
     private boolean completed;
+    private LocalDate deadline;
 
     public Task() {
     }
 
-    public Task(String title, String description, boolean completed) {
+
+    public Task(String title, String description, boolean completed, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.completed = completed;
+        this.deadline = deadline;
     }
 
     public Long getId() {
@@ -54,5 +58,13 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public LocalDate getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 }
