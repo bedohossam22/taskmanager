@@ -4,6 +4,7 @@ import com.vois.taskmanager.entities.Task;
 import com.vois.taskmanager.repositories.TaskRepository;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
+import jakarta.validation.Valid;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -18,7 +19,7 @@ public class TaskController {
 
     // create task
     @PostMapping
-    public Task createTask(@RequestBody Task task) {
+    public Task createTask(@Valid @RequestBody Task task) {
         return taskRepository.save(task);
     }
 
@@ -36,7 +37,7 @@ public class TaskController {
 
     // update
     @PutMapping("/{id}")
-    public Task updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
+    public Task updateTask(@PathVariable Long id, @Valid @RequestBody Task taskDetails) {
         Task task = taskRepository.findById(id).orElseThrow();
         task.setTitle(taskDetails.getTitle());
         task.setDescription(taskDetails.getDescription());

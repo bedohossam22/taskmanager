@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Task {
@@ -13,12 +14,13 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Title cannot be empty")
     private String title;
     private String description;
     private boolean completed;
     private LocalDate deadline;
-    private String priority;   // HIGH, MEDIUM, LOW
-    private String category;   // e.g. "Work", "Personal", "Shopping"
+    private String priority; // HIGH, MEDIUM, LOW
+    private String category; // e.g. "Work", "Personal", "Shopping"
     private LocalDateTime createdAt;
 
     public Task() {
@@ -26,7 +28,8 @@ public class Task {
         this.priority = "MEDIUM";
     }
 
-    public Task(String title, String description, boolean completed, LocalDate deadline, String priority, String category) {
+    public Task(String title, String description, boolean completed, LocalDate deadline, String priority,
+            String category) {
         this.title = title;
         this.description = description;
         this.completed = completed;
